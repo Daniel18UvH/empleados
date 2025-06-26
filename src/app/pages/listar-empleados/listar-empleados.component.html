@@ -1,0 +1,47 @@
+<div class="container" style="margin: 20px;">
+    <h2>Listado de Empleados</h2>
+
+
+    @if (listEmpleados.length <=0 ) {
+        <p class="text-center">
+           No hay Empleados registrados
+        </p>
+    }@else {
+        <table class="table table-border">
+            <thead class="table-success">
+                <tr>
+                    <th>ID Empleado</th>
+                    <th>Nombre</th>
+                    <th>Departamento</th>
+                    <th>Email</th>
+                    <th>Telefono</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (empleado of listEmpleados; track empleado._id;let i= $index) {
+                    <tr>
+                        <td>{{ empleado._id}}</td>
+                        <td>{{empleado.nombre}}</td>
+                        <td>{{empleado.departamento}}</td>
+                        <td>{{empleado.email}}</td>
+                        <td>{{empleado.telefono}}</td>
+                        <td>
+                            <a [routerLink]="['/editar-empleado', empleado._id]">
+                                <button type="button" class="btn btn-warning btn-sm">
+                                    Editar
+                                </button>
+                            </a>
+                        </td>
+                        <td>
+                            <a (click)="eliEmpleado(empleado, i)"
+                            class="btn btn-danger btn-sm">
+                        Eliminar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            </table>
+    }
+</div>
